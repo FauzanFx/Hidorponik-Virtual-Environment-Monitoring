@@ -13,6 +13,7 @@ class Model:
         self.water_pump_on = False
         self.light_on = False
         self.fan_on = False
+        self.is_refilling = False
 
         # Data historis untuk grafik (menyimpan 50 titik data terakhir)
         self.ph_history = []
@@ -36,6 +37,7 @@ class Model:
         self.humidity = data.get("humidity", self.humidity)
         self.light = data.get("light", self.light)
         self.water_level = data.get("water_level", self.water_level)
+        self.is_refilling = data.get("is_refilling", self.is_refilling)
         # Tambahkan ke riwayat untuk grafik
         self._add_to_history(self.ph_history, self.ph)
         self._add_to_history(self.temp_history, self.temperature)
