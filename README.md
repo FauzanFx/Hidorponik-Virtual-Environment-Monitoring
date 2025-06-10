@@ -1,7 +1,7 @@
-#Dashboard Monitoring & Otomatisasi Hidroponik
+**Dashboard Monitoring & Otomatisasi Hidroponik**
 Sebuah prototipe aplikasi desktop untuk memantau dan mengontrol sistem pertanian hidroponik, dibangun dengan Python dan Tkinter. Proyek ini mengikuti arsitektur Model-View-Controller (MVC) untuk memisahkan logika data, antarmuka pengguna, dan kontrol sistem.
 
-#Fitur Utama
+**Fitur Utama**
 Dashboard Real-time: Memantau parameter kunci lingkungan seperti pH, Suhu, Kelembapan, Level Air, dan Intensitas Cahaya.
 Visualisasi Data: Grafik riwayat untuk pH dan Suhu, serta indikator batang vertikal untuk Level Air, memberikan pemahaman visual yang cepat tentang kondisi sistem.
 Kontrol Manual & Otomatis:
@@ -12,7 +12,7 @@ Sistem Notifikasi: Memberikan peringatan visual di dashboard jika ada parameter 
 Simulasi Lingkungan Terpisah: Dilengkapi dengan environment.py yang mensimulasikan perubahan data sensor secara alami. Modul ini dapat dengan mudah diganti dengan sensor fisik (seperti Arduino atau Raspberry Pi) tanpa mengubah kode inti aplikasi.
 Kustomisasi Tampilan: Antarmuka pengguna (UI) dapat dengan mudah diubah warnanya dengan memodifikasi file ui_config.py.
 
-#Arsitektur
+**Arsitektur**
 Proyek ini menggunakan pola desain Model-View-Controller (MVC):
 
 model.py: Bertanggung jawab untuk mengelola semua data dan status aplikasi. Ia tidak tahu apa-apa tentang tampilan.
