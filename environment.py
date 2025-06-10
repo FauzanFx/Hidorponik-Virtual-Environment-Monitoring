@@ -15,7 +15,7 @@ class HydroponicEnvironment:
         # Status kontrol internal lingkungan
         self._is_light_on = False
         self._is_fan_on = False
-        self._is_waterpump_on = False
+        self._is_refilling = False
 
     def update(self):
         """Panggil metode ini secara berkala untuk mensimulasikan perubahan waktu."""
@@ -28,7 +28,7 @@ class HydroponicEnvironment:
             self.temperature -= random.uniform(0.05, 0.1) # Kipas mendinginkan
             self.humidity -= random.uniform(0.1, 0.2)
         else:
-            self.temperature += random.uniform(0.01, 0.05) # Suhu naik perlahan
+            self.temperature += random.uniform(-0.05, 0.05) # Suhu naik perlahan
             self.humidity += random.uniform(0.05, 0.1)
 
         self.temperature = max(18.0, min(35.0, self.temperature))
@@ -42,9 +42,15 @@ class HydroponicEnvironment:
             self.light_intensity = 0
 
         # Simulasi tingkat Air
-
-        self.water_level -= random.uniform(0.01, 0.2)
-        self.water_level = max(0, self.water_level)
+        if self._is_refilling:
+            # Jika "mode mengisi" aktif, tambah level air
+            self.water_level += 5  # Tambah 5% setiap detik, bisa diubah
+            if self.water_level >= 100:
+                self.water_level = 100.0
+                self._is_refilling = False
+        else:
+            self.water_level -= random.uniform(0.01, 0.2)
+            self.water_level = max(0, self.water_level)
 
     def get_sensor_data(self):
         """Mengembalikan data sensor saat ini dalam bentuk dictionary."""
@@ -53,7 +59,8 @@ class HydroponicEnvironment:
             "temperature": self.temperature,
             "humidity": self.humidity,
             "light": self.light_intensity,
-            "water_level": self.water_level
+            "water_level": self.water_level,
+            "is_refilling": self._is_refilling
         }
 
     # --- Metode Kontrol Lingkungan ---
@@ -70,7 +77,11 @@ class HydroponicEnvironment:
         """Menyalakan atau mematikan kipas/ventilasi."""
         self._is_fan_on = status
 
-    def adjust_water(self, amount):
+    def adjust_water_level(self, amount):
         """Menyesuaikan tingkat Air (simulasi penambahan Air)"""
         self.water_level += amount
         self.water_level = max(0.0, min(100.0, self.water_level))
+
+    def refill_water(self):
+        if not self._is_refilling:
+            self._is_refilling = True
