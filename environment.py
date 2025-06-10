@@ -20,7 +20,7 @@ class HydroponicEnvironment:
     def update(self):
         """Panggil metode ini secara berkala untuk mensimulasikan perubahan waktu."""
         # Simulasi perubahan pH
-        self.ph += random.uniform(-0.05, 0.05)
+        self.ph += random.uniform(-0.01, 0.01)
         self.ph = max(5.0, min(8.0, self.ph)) # Jaga pH dalam rentang wajar
 
         # Simulasi perubahan suhu dan kelembapan
@@ -43,7 +43,7 @@ class HydroponicEnvironment:
 
         # Simulasi tingkat Air
 
-        self.water_level -= random.uniform(0.1, 0.5)
+        self.water_level -= random.uniform(0.01, 0.2)
         self.water_level = max(0, self.water_level)
 
     def get_sensor_data(self):
