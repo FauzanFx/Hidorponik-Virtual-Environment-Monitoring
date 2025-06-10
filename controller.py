@@ -44,13 +44,20 @@ class Controller:
         if not self.model.automation_enabled:
             self.model.set_notification("Otomatisasi nonaktif. Kontrol manual diperlukan.")
             return
-
+        if not water_ok: # Hanya bertindak jika water level di luar rentang
+            if self.model.water_level < 20:
+                # Air terlalu rendah, perlu dinaikkan
+                self.environment.adjust_water(20)
+                print("AUTO: Air hampir habis! Menambahkan Air Up...")
+            elif self.model.water_level == 99:
+                # Air terlalu tinggi, perlu diturunkan
+                print("AUTO: Air sudah cukup! Menghentikan Air Down...")
         # Langkah 1: Ambil profil yang aktif dari model
         profile = self.model.active_profile_data
         if not profile:
             self.model.set_notification("Pilih profil tanaman untuk memulai otomatisasi.")
             return
-
+        
         # Langkah 2: Logika untuk membuat Notifikasi Peringatan
         ph_ok = profile["ph_min"] <= self.model.ph <= profile["ph_max"]
         temp_ok = profile["temp_min"] <= self.model.temperature <= profile["temp_max"]
@@ -92,14 +99,7 @@ class Controller:
                 self.environment.adjust_ph(-0.1)
                 print("AUTO: pH terlalu tinggi! Menambahkan larutan pH Down...")
 
-        if not water_ok: # Hanya bertindak jika water level di luar rentang
-            if self.model.water_level < 20:
-                # Air terlalu rendah, perlu dinaikkan
-                self.environment.adjust_water(0.1)
-                print("AUTO: Air hampir habis! Menambahkan Air Up...")
-            elif self.model.water_level == 99:
-                # Air terlalu tinggi, perlu diturunkan
-                print("AUTO: Air sudah cukup! Menghentikan Air Down...")
+        
 
     def update_loop(self):
         """Loop utama untuk memperbarui data dan UI secara berkala."""

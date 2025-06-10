@@ -59,23 +59,23 @@ class View(tk.Frame):
         ttk.Separator(dashboard_frame, orient='horizontal').grid(row=3, columnspan=2, sticky='ew', pady=10)
         
         # --- Bagian Data Aktual ---
-        tk.Label(dashboard_frame, text="pH Air Aktual:", font=config.FONT_NORMAL, bg=config.FRAME_COLOR, fg=config.LABEL_COLOR).grid(row=4, column=0, sticky="w", pady=2)
+        tk.Label(dashboard_frame, text="📊pH Air Aktual :", font=config.FONT_NORMAL, bg=config.FRAME_COLOR, fg=config.LABEL_COLOR).grid(row=4, column=0, sticky="w", pady=2)
         self.ph_label = tk.Label(dashboard_frame, text="N/A", font=config.FONT_BOLD, bg=config.FRAME_COLOR, fg=config.TEXT_COLOR)
         self.ph_label.grid(row=4, column=1, sticky="w", pady=2)
 
-        tk.Label(dashboard_frame, text="🌡️ Suhu Aktual:", font=config.FONT_NORMAL, bg=config.FRAME_COLOR, fg=config.LABEL_COLOR).grid(row=5, column=0, sticky="w", pady=2)
+        tk.Label(dashboard_frame, text="🌡Suhu Aktual   :", font=config.FONT_NORMAL, bg=config.FRAME_COLOR, fg=config.LABEL_COLOR).grid(row=5, column=0, sticky="w", pady=2)
         self.temp_label = tk.Label(dashboard_frame, text="N/A", font=config.FONT_BOLD, bg=config.FRAME_COLOR, fg=config.TEXT_COLOR)
         self.temp_label.grid(row=5, column=1, sticky="w", pady=2)
 
-        tk.Label(dashboard_frame, text="💧 Kelembapan:", font=config.FONT_NORMAL, bg=config.FRAME_COLOR, fg=config.LABEL_COLOR).grid(row=6, column=0, sticky="w", pady=2)
+        tk.Label(dashboard_frame, text="💧Kelembapan    :", font=config.FONT_NORMAL, bg=config.FRAME_COLOR, fg=config.LABEL_COLOR).grid(row=6, column=0, sticky="w", pady=2)
         self.humidity_label = tk.Label(dashboard_frame, text="N/A", font=config.FONT_BOLD, bg=config.FRAME_COLOR, fg=config.TEXT_COLOR)
         self.humidity_label.grid(row=6, column=1, sticky="w", pady=2)
 
-        tk.Label(dashboard_frame, text="💡 Cahaya:", font=config.FONT_NORMAL, bg=config.FRAME_COLOR, fg=config.LABEL_COLOR).grid(row=7, column=0, sticky="w", pady=2)
+        tk.Label(dashboard_frame, text="💡Cahaya        :", font=config.FONT_NORMAL, bg=config.FRAME_COLOR, fg=config.LABEL_COLOR).grid(row=7, column=0, sticky="w", pady=2)
         self.light_label = tk.Label(dashboard_frame, text="N/A", font=config.FONT_BOLD, bg=config.FRAME_COLOR, fg=config.TEXT_COLOR)
         self.light_label.grid(row=7, column=1, sticky="w", pady=2)
 
-        tk.Label(dashboard_frame, text="🌊 Level Air:", font=config.FONT_NORMAL, bg=config.FRAME_COLOR, fg=config.LABEL_COLOR).grid(row=8, column=0, sticky="w", pady=2)
+        tk.Label(dashboard_frame, text="🌊Level Air     :", font=config.FONT_NORMAL, bg=config.FRAME_COLOR, fg=config.LABEL_COLOR).grid(row=8, column=0, sticky="w", pady=2)
         self.water_level_label = tk.Label(dashboard_frame, text="N/A", font=config.FONT_BOLD, bg=config.FRAME_COLOR, fg=config.TEXT_COLOR)
         self.water_level_label.grid(row=8, column=1, sticky="w", pady=2)
 
