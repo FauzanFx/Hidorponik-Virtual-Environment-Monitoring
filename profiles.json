@@ -1,0 +1,30 @@
+{
+    "Tidak Ada": null,
+    "Selada": {
+        "name": "Selada",
+        "ph_min": 5.8,
+        "ph_max": 6.5,
+        "temp_min": 20.0,
+        "temp_max": 25.0,
+        "auto_light_on_hour": 6,
+        "auto_light_off_hour": 22
+    },
+    "Tomat": {
+        "name": "Tomat",
+        "ph_min": 6.0,
+        "ph_max": 6.8,
+        "temp_min": 22.0,
+        "temp_max": 28.0,
+        "auto_light_on_hour": 5,
+        "auto_light_off_hour": 21
+    },
+    "Cabai": {
+        "name": "Cabai",
+        "ph_min": 5.5,
+        "ph_max": 6.5,
+        "temp_min": 23.0,
+        "temp_max": 30.0,
+        "auto_light_on_hour": 6,
+        "auto_light_off_hour": 22
+    }
+}

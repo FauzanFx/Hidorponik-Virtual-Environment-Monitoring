@@ -1,35 +1,34 @@
 # main.py
 
-import tkinter as tk
+import sys
+from PyQt6.QtWidgets import QApplication, QMainWindow
 from model import Model
-from view import View
-from controller import Controller
+from view_pyqt import View
+from controller_pyqt import Controller
 from environment import HydroponicEnvironment
+from ui_config import STYLE_SHEET
 
-class App:
-    def __init__(self, root):
-        """Inisialisasi aplikasi MVC."""
-        # Buat instance dari setiap komponen
+class App(QMainWindow):
+    # Inisialisasi Aplikasi Utama
+    def __init__(self):
+        super().__init__()
+        self.setWindowTitle("Hydroponic Monitoring and Automation")
+        self.setGeometry(100, 100, 1100, 650)
+
         self.environment = HydroponicEnvironment()
         self.model = Model()
+        self.controller = Controller(self.model, self.environment)
+        self.view = View(self.controller)
         
-        # Controller membutuhkan referensi ke model dan environment
-        self.controller = Controller(self.model, None, self.environment)
-        
-        # View membutuhkan referensi ke root window dan controller
-        self.view = View(root, self.controller)
-        
-        # Sekarang view sudah dibuat, berikan referensinya ke controller
         self.controller.view = self.view
-        
-        # Atur layout view
-        self.view.pack(fill=tk.BOTH, expand=True)
-        
-        # Mulai loop pembaruan data
-        self.controller.update_loop()
+        self.controller.start_update_loop()
 
+        self.setCentralWidget(self.view)
+
+# Titik Masuk Eksekusi Program
 if __name__ == "__main__":
-    # Buat variable root untuk Tkinter
-    root = tk.Tk()
-    app = App(root)
-    root.mainloop()
+    app = QApplication(sys.argv)
+    app.setStyleSheet(STYLE_SHEET)
+    win = App()
+    win.show()
+    sys.exit(app.exec())
