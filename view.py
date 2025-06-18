@@ -1,6 +1,6 @@
-# view_pyqt.py
+# view.py
 from PyQt6.QtWidgets import (QWidget, QLabel, QPushButton, QVBoxLayout, QHBoxLayout, 
-                             QGridLayout, QGroupBox, QComboBox, QFrame, QApplication)
+                             QGridLayout, QGroupBox, QComboBox, QFrame)
 from PyQt6.QtCore import Qt
 from matplotlib.figure import Figure
 from matplotlib.backends.backend_qt5agg import FigureCanvasQTAgg as FigureCanvas

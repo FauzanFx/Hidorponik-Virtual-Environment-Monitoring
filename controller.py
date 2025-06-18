@@ -1,4 +1,4 @@
-# controller_pyqt.py
+# controller.py
 
 from datetime import datetime
 from PyQt6.QtCore import QTimer
@@ -38,9 +38,9 @@ class Controller:
                 valid, error_massage = self.range_check(new_data["ph_min"],new_data["ph_max"],new_data["temp_min"],new_data["temp_max"])
                 if not valid:
                     return QMessageBox.warning(self.view, "Error", error_massage)
-                else:
-                    profile_manager.save_profiles(self.plant_profiles)
-                    self.view.refresh_profile_dropdown() # Perbarui dropdown di view
+                profile_manager.save_profiles(self.plant_profiles)
+                self.view.refresh_profile_dropdown() # Perbarui dropdown di view
+                print("Profil berhasil ditambahkan")
             else:
                 QMessageBox.warning(self.view, "Error", "Nama profil tidak boleh kosong atau sudah ada!")
             
@@ -56,10 +56,13 @@ class Controller:
         
         if dialog.exec():
             updated_data = dialog.get_profile_data()
-            self.range_check(updated_data["ph_min"],updated_data["ph_max"],updated_data["temp_min"],updated_data["temp_max"])
+            valid, error_massage = self.range_check(updated_data["ph_min"],updated_data["ph_max"],updated_data["temp_min"],updated_data["temp_max"])
+            if not valid:
+                return QMessageBox.warning(self.view, "Error", error_massage)
             self.plant_profiles[current_profile_name] = updated_data
             profile_manager.save_profiles(self.plant_profiles)
             self.change_plant_profile(current_profile_name)
+            print("Profil berhasil diedit")
 
     def delete_profile(self):
         current_profile_name = self.model.active_profile_name
@@ -74,11 +77,12 @@ class Controller:
 
         if reply == QMessageBox.StandardButton.Yes:
             del self.plant_profiles[current_profile_name]
+            print("Profil berhasil dihapus")
             profile_manager.save_profiles(self.plant_profiles)
             self.view.refresh_profile_dropdown()
             # Set ke profil "Tidak Ada"
             self.view.profile_dropdown.setCurrentText("Tidak Ada")
-            self.model.active_profile_data = None
+            self.model.active_profile_name = None
     # Memulai Timer Loop
     def start_update_loop(self):
         self.timer.start()

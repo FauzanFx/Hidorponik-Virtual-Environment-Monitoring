@@ -3,8 +3,8 @@
 import sys
 from PyQt6.QtWidgets import QApplication, QMainWindow
 from model import Model
-from view_pyqt import View
-from controller_pyqt import Controller
+from view import View
+from controller import Controller
 from environment import HydroponicEnvironment
 from ui_config import STYLE_SHEET
 

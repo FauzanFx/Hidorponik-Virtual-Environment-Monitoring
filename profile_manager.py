@@ -43,4 +43,4 @@ def save_profiles(profiles):
     """Menyimpan dictionary profil ke dalam file JSON."""
     with open(PROFILES_FILE, 'w') as f:
         json.dump(profiles, f, indent=4)
-    print(f"Profil berhasil disimpan ke '{PROFILES_FILE}'.")
+    print(f"Perubahan berhasil disimpan ke '{PROFILES_FILE}'.")
