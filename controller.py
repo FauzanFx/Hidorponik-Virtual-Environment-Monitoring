@@ -30,16 +30,17 @@ class Controller:
         
     def add_profile(self):
         dialog = ProfileDialog(self.view)
-        if dialog.exec(): # Menampilkan dialog dan menunggu hasil
+        if dialog.exec():
             new_data = dialog.get_profile_data()
             profile_name = new_data["name"]
             if profile_name and profile_name not in self.plant_profiles:
-                self.plant_profiles[profile_name] = new_data
-                valid, error_massage = self.range_check(new_data["ph_min"],new_data["ph_max"],new_data["temp_min"],new_data["temp_max"])
+                valid, error_message = self.range_check(new_data["ph_min"], new_data["ph_max"], new_data["temp_min"], new_data["temp_max"])
                 if not valid:
-                    return QMessageBox.warning(self.view, "Error", error_massage)
+                    QMessageBox.warning(self.view, "Error", error_message)
+                    return
+                self.plant_profiles[profile_name] = new_data
                 profile_manager.save_profiles(self.plant_profiles)
-                self.view.refresh_profile_dropdown() # Perbarui dropdown di view
+                self.view.refresh_profile_dropdown()
                 print("Profil berhasil ditambahkan")
             else:
                 QMessageBox.warning(self.view, "Error", "Nama profil tidak boleh kosong atau sudah ada!")
@@ -81,8 +82,8 @@ class Controller:
             profile_manager.save_profiles(self.plant_profiles)
             self.view.refresh_profile_dropdown()
             # Set ke profil "Tidak Ada"
+            self.change_plant_profile("Tidak Ada")
             self.view.profile_dropdown.setCurrentText("Tidak Ada")
-            self.model.active_profile_name = None
     # Memulai Timer Loop
     def start_update_loop(self):
         self.timer.start()

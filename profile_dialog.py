@@ -24,7 +24,7 @@ class ProfileDialog(QDialog):
         for spinbox in [self.ph_min_input, self.ph_max_input]:
             spinbox.setRange(0.0, 14.0)
         for spinbox in [self.temp_min_input, self.temp_max_input]:
-            spinbox.setRange(0.0, 50.0)
+            spinbox.setRange(0.0, 99.0)
 
         # Jika mode edit, isi field dengan data yang ada
         if self.is_edit_mode:
